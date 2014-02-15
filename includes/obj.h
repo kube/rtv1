@@ -6,7 +6,7 @@
 /*   By: cfeijoo <cfeijoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 15:22:31 by cfeijoo           #+#    #+#             */
-/*   Updated: 2014/02/13 02:30:56 by cfeijoo          ###   ########.fr       */
+/*   Updated: 2014/02/15 02:09:55 by cfeijoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef union						u_color
 	int								color;
 }									t_color;
 
-typedef struct						s_point
+typedef struct						s_pont
 {
 	float							x;
 	float							y;
@@ -42,7 +42,7 @@ typedef struct						s_vector
 typedef struct						s_sphere
 {
 	t_point							origin;
-	float							radius;
+	t_vector						radius;
 	t_color							color;
 
 }									t_sphere;
@@ -52,5 +52,13 @@ typedef struct						s_ray
 	t_point							origin;
 	t_vector						direction;
 }									t_ray;
+
+typedef struct						s_camera
+{
+	t_point							origin;
+	t_vector						x_axis;
+	t_vector						y_axis;
+	t_vector						z_axis;
+}									t_camera;
 
 #endif

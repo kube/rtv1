@@ -6,21 +6,22 @@
 #    By: cfeijoo <cfeijoo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/28 05:03:25 by cfeijoo           #+#    #+#              #
-#    Updated: 2014/02/12 23:05:03 by cfeijoo          ###   ########.fr        #
+#    Updated: 2014/02/15 02:19:52 by cfeijoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = raytracer
 
 INCLUDEFOLDERS = -I./includes/ -I./libft/includes/ -I./guava/includes/
-LIBFOLDERS = -L./guava/ -L./libft/ -L/usr/X11/lib/ -L/usr/X11/include
-LIBS =  -lft -lmlx -lXext -lX11 -lsellowiana
+LIBFOLDERS = -L/usr/X11/lib/ -L/usr/X11/include
+LIBS =  -lmlx -lXext -lX11
 
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-CFILES =	main.c			\
-			get_map_data.c
+CFILES =	main.c							\
+			transformations_camera.c		\
+			transformations_vectors.c
 
 OFILES = $(CFILES:.c=.o)
 
