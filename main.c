@@ -6,7 +6,7 @@
 /*   By: cfeijoo <cfeijoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 11:03:08 by cfeijoo           #+#    #+#             */
-/*   Updated: 2014/02/15 02:17:43 by cfeijoo          ###   ########.fr       */
+/*   Updated: 2014/02/15 21:31:20 by cfeijoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 #include <raytracer.h>
 #include <math.h>
 #include <mlx.h>
+
+#include <stdlib.h>
+
+#include <stdio.h>
+
+// TO ADD IN MAKEFILE
+#include "/opt/X11/include/X11/X.h"
+
 
 #define WIN_WIDTH 1200
 #define WIN_HEIGHT 600
@@ -71,6 +79,29 @@ static int			blend_colors(int color1, int color2, float coeff)
 // 	return (0);
 // }
 
+// static void			throw_ray(t_env *env, unsigned int i, unsigned int j,
+// 								t_ray *ray)
+// {
+
+// }
+
+static int		keypress_hook(int keycode, t_env *env)
+{
+	if (keycode == 65307)
+		exit(0);
+	if (keycode == 65363)
+		cam_rot_z(&env->camera, M_PI / 20);
+	if (keycode == 65361)
+		cam_rot_z(&env->camera, -M_PI / 20);
+	if (keycode == 65362)
+		cam_rot_y(&env->camera, M_PI / 20);
+	if (keycode == 65364)
+		cam_rot_y(&env->camera, -M_PI / 20);
+	printf("Camera : %f %f %f\n", env->camera.x_axis.x, env->camera.x_axis.y,
+			env->camera.x_axis.z);
+	return (0);
+}
+
 static void			trace_color(t_env *env, unsigned int i, unsigned int j,
 								t_ray *ray)
 {
@@ -113,7 +144,7 @@ static int			throw_view_plane(t_env *env)
 		while (i < env->view_width)
 		{
 			// TREAT RAY HERE
-
+			// throw_ray(env, i, j, &ray);
 			trace_color(env, i, j, &ray);
 
 			// END TREAT RAY
@@ -173,6 +204,7 @@ int					main(void)
 
 
 	mlx_expose_hook(env.win, throw_view_plane, &env);
+	mlx_hook(env.win, KeyPress, KeyPressMask, keypress_hook, &env);
 	// mlx_hook(env.win, KeyPress, KeyPressMask, keypress_hook, &env);
 	// mlx_hook(env.win, KeyRelease, KeyReleaseMask, keyrelease_hook, &env);
 	mlx_loop_hook(env.mlx, throw_view_plane, &env);
