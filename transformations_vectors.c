@@ -6,13 +6,15 @@
 /*   By: cfeijoo <cfeijoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/22 14:09:42 by cfeijoo           #+#    #+#             */
-/*   Updated: 2014/02/15 02:19:28 by cfeijoo          ###   ########.fr       */
+/*   Updated: 2014/02/16 00:49:17 by cfeijoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <obj.h>
 #include <raytracer.h>
 #include <math.h>
+
+#include <stdio.h>
 
 void			vect_rot_z(t_vector *vector, float angle)
 {

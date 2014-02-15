@@ -6,7 +6,7 @@
 /*   By: cfeijoo <cfeijoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 11:03:08 by cfeijoo           #+#    #+#             */
-/*   Updated: 2014/02/16 00:39:16 by cfeijoo          ###   ########.fr       */
+/*   Updated: 2014/02/16 00:51:32 by cfeijoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static int			blend_colors(int color1, int color2, float coeff)
 
 static int		keypress_hook(int keycode, t_env *env)
 {
+	printf("%d\n", keycode);
 	if (keycode == 65307)
 		exit(0);
 	if (keycode == 65363)
@@ -97,6 +98,10 @@ static int		keypress_hook(int keycode, t_env *env)
 		cam_rot_y(&env->camera, M_PI / 20);
 	if (keycode == 65364)
 		cam_rot_y(&env->camera, -M_PI / 20);
+	if (keycode == 65535)
+		cam_rot_x(&env->camera, -M_PI / 20);
+	if (keycode == 65366)
+		cam_rot_x(&env->camera, M_PI / 20);
 	printf("Camera : %f %f %f\n", env->camera.x_axis.x, env->camera.x_axis.y,
 			env->camera.x_axis.z);
 	return (0);
@@ -206,7 +211,7 @@ int					main(void)
 
 
 	init_cam(&env.camera, 0, 0, 0);
-	init_cam_angle(&env.camera, 0, 0);
+	init_cam_angle(&env.camera, 0, M_PI);
 
 
 	mlx_expose_hook(env.win, throw_view_plane, &env);
