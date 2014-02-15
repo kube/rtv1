@@ -6,7 +6,7 @@
 /*   By: cfeijoo <cfeijoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 11:03:08 by cfeijoo           #+#    #+#             */
-/*   Updated: 2014/02/15 21:31:20 by cfeijoo          ###   ########.fr       */
+/*   Updated: 2014/02/16 00:39:16 by cfeijoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ static int			throw_view_plane(t_env *env)
 
 	while (j < env->view_height)
 	{
+		i = 0;
 		while (i < env->view_width)
 		{
 			// TREAT RAY HERE
@@ -156,9 +157,14 @@ static int			throw_view_plane(t_env *env)
 		ray.direction.x += (env->camera.z_axis.x / VIEWPLANE_PLOT); 
 		ray.direction.y += (env->camera.z_axis.y / VIEWPLANE_PLOT);
 		ray.direction.z += (env->camera.z_axis.z / VIEWPLANE_PLOT);
+
+		// BACK TO ZERO ON Y-AXIS
+		ray.direction.x -= (env->camera.y_axis.x / VIEWPLANE_PLOT) * env->view_width; 
+		ray.direction.y -= (env->camera.y_axis.y / VIEWPLANE_PLOT) * env->view_width;
+		ray.direction.z -= (env->camera.y_axis.z / VIEWPLANE_PLOT) * env->view_width;
 		j++;
 	}
-
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (0);
 }
 
@@ -173,7 +179,7 @@ static void			init_cam(t_camera *cam, float x, float y, float z)
 	cam->y_axis.z = 0.0f;
 	cam->z_axis.x = 0.0f;
 	cam->z_axis.y = 0.0f;
-	cam->z_axis.z = 0.0f;
+	cam->z_axis.z = 1.0f;
 	cam->origin.x = x;
 	cam->origin.y = y;
 	cam->origin.z = z;
