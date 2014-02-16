@@ -6,12 +6,14 @@
 /*   By: cfeijoo <cfeijoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 00:24:38 by cfeijoo           #+#    #+#             */
-/*   Updated: 2014/02/15 02:10:06 by cfeijoo          ###   ########.fr       */
+/*   Updated: 2014/02/16 17:06:51 by cfeijoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYTRACER_H
 # define RAYTRACER_H
+
+# include <obj.h>
 
 # define VIEWPLANE_PLOT 1000
 
@@ -28,6 +30,8 @@ typedef struct				s_env
 	t_camera				camera;
 	unsigned int			view_width;
 	unsigned int			view_height;
+
+	t_object				**objects;
 }							t_env;
 
 typedef union

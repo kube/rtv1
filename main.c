@@ -6,7 +6,7 @@
 /*   By: cfeijoo <cfeijoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 11:03:08 by cfeijoo           #+#    #+#             */
-/*   Updated: 2014/02/16 00:51:32 by cfeijoo          ###   ########.fr       */
+/*   Updated: 2014/02/16 17:11:06 by cfeijoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <raytracer.h>
 #include <math.h>
 #include <mlx.h>
+#include <libft.h>
 
 #include <stdlib.h>
 
@@ -82,6 +83,18 @@ static int			blend_colors(int color1, int color2, float coeff)
 // static void			throw_ray(t_env *env, unsigned int i, unsigned int j,
 // 								t_ray *ray)
 // {
+// 	int				obj;
+// 	//	GET RAY EQUATION ?
+// 	//	: ax + by + cz + d
+
+// 	//	DO TESTS FOT EACH OBJECT
+// 	//	AND GET THEIR EQUATION
+// 	obj = 0;
+// 	while (env->objects[obj])
+// 	{
+
+// 		obj++;
+// 	}
 
 // }
 
@@ -196,6 +209,16 @@ static void			init_cam_angle(t_camera *cam, float y, float z)
 	cam_rot_z(cam, z);
 }
 
+
+static void			load_test_objects(t_env *env)
+{
+	env->objects = (t_object*)ft_memalloc(3 * sizeof(t_object));
+
+	env->objects[0].type = SPHERE_OBJECT;
+	env->objects[0].sphere.radius = 3.0f;
+	env->objects[0].sphere.radius = 3.0f;
+}
+
 int					main(void)
 {
 	t_env			env;
@@ -211,7 +234,10 @@ int					main(void)
 
 
 	init_cam(&env.camera, 0, 0, 0);
-	init_cam_angle(&env.camera, 0, M_PI);
+	init_cam_angle(&env.camera, 0, 2 * M_PI);
+
+	// FOR TESTS ONLY
+	load_test_objects(&env);
 
 
 	mlx_expose_hook(env.win, throw_view_plane, &env);

@@ -6,15 +6,15 @@
 #    By: cfeijoo <cfeijoo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/28 05:03:25 by cfeijoo           #+#    #+#              #
-#    Updated: 2014/02/15 02:19:52 by cfeijoo          ###   ########.fr        #
+#    Updated: 2014/02/16 16:59:04 by cfeijoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = raytracer
 
 INCLUDEFOLDERS = -I./includes/ -I./libft/includes/ -I./guava/includes/
-LIBFOLDERS = -L/usr/X11/lib/ -L/usr/X11/include
-LIBS =  -lmlx -lXext -lX11
+LIBFOLDERS = -L./libft/ -L/usr/X11/lib/ -L/usr/X11/include
+LIBS =  -lmlx -lXext -lX11 -lft
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
@@ -34,12 +34,9 @@ $(NAME) :
 updatelibs :
 	cd libft/ && git pull
 	make -C libft/ re
-	cd guava/ && git pull
-	make -C guava/ re
 
 complibs :
 	make -C libft/ re
-	make -C guava/ re
 
 clean :
 	rm -f $(OFILES)
